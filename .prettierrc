@@ -1,0 +1,13 @@
+{
+	"useTabs": true,
+	"tabWidth": 4,
+	"htmlWhitespaceSensitivity": "ignore",
+	"trailingComma": "all",
+	"singleQuote": true,
+	"semi": true,
+	"printWidth": 100,
+	"pluginSearchDirs": ["."],
+	"svelteSortOrder": "scripts-markup-styles",
+	"svelteStrictMode": false,
+	"svelteBracketNewLine": true
+}
