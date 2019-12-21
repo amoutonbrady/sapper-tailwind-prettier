@@ -2,7 +2,7 @@
 
 This project will try to keep all the dependencies up to date
 
-[Sapper](https://github.com/sveltejs/sapper) template that suits my need including technologies I most familiar with:
+[Sapper](https://github.com/sveltejs/sapper) template that suits my need including technologies I'm most familiar with:
 
 -   [Sapper](https://github.com/sveltejs/sapper) - The framework itself updated to its latest version
 -   [TailwindCSS](https://tailwindcss.com/) - An utility first CSS framework
@@ -24,6 +24,14 @@ npx degit "amoutonbrady/sapper-tailwind-prettier" my-app
 You can configure Prettier in `.prettierrc`
 You can configure any postcss rules you want to be applied to the final css bundle in `postcss.config.js`
 
+### Format your code
+
+You can run the following command if you want to apply prettier formatting to all files
+
+```bash
+npm run format # or yarn
+```
+
 ### Running the project
 
 However you get the code, you can install dependencies and run the project in development mode with:
@@ -35,6 +43,16 @@ npm run dev
 ```
 
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
+
+## Recommendations
+
+In order to make the most out of this template here are some useful extensions if you are using VSCode :
+
+-   [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Format your file on save
+-   [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Class auto suggestion in markup
+-   [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind) - Sort classes in a consistent way
+-   [Svelte](https://marketplace.visualstudio.com/items?itemName=JamesBirtles.svelte-vscode) - Svelte syntax highlighting and basic support
+-   [Svelte Intellisense](https://marketplace.visualstudio.com/items?itemName=ardenivanov.svelte-intellisense) - Provide usefull informations regarding svelte component and variables accross the files
 
 ## Structure
 
