@@ -3,10 +3,12 @@
 	import AppFooter from '../components/footer.svelte';
 </script>
 
-<AppHeader />
+<div class="h-screen flex flex-col bg-gray-800 text-gray-100">
+	<AppHeader />
 
-<main class="container">
-	<slot />
-</main>
+	<main class="flex flex-1 justify-center items-center flex-col space-y-4">
+		<slot />
+	</main>
 
-<AppFooter />
+	<AppFooter />
+</div>

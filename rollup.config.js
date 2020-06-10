@@ -1,26 +1,23 @@
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
-import commonjs from 'rollup-plugin-commonjs';
+import babel from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+
 import svelte from 'rollup-plugin-svelte';
-import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
+
 import config from 'sapper/config/rollup.js';
+
 import pkg from './package.json';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
-const onwarn = (warning, onwarn) => {
-	if (warning.code === 'THIS_IS_UNDEFINED') return;
-
-	return (
-		(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
-		onwarn(warning)
-	);
-};
-const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
+const onwarn = (warning, onwarn) =>
+	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+	onwarn(warning);
 
 export default {
 	client: {
@@ -39,7 +36,7 @@ export default {
 			resolve({
 				extensions: ['.mjs', '.js', '.json', '.node', '.svelte'],
 				browser: true,
-				dedupe,
+				dedupe: ['svelte'],
 			}),
 			commonjs(),
 			json({
@@ -70,12 +67,10 @@ export default {
 					],
 				}),
 
-			!dev &&
-				terser({
-					module: true,
-				}),
+			!dev && terser({ module: true }),
 		],
 
+		preserveEntrySignatures: false,
 		onwarn,
 	},
 
@@ -91,9 +86,7 @@ export default {
 				generate: 'ssr',
 				dev,
 			}),
-			resolve({
-				dedupe,
-			}),
+			resolve(),
 			commonjs(),
 			json({
 				namedExports: false,
@@ -104,6 +97,7 @@ export default {
 			require('module').builtinModules || Object.keys(process.binding('natives')),
 		),
 
+		preserveEntrySignatures: 'strict',
 		onwarn,
 	},
 
@@ -124,6 +118,7 @@ export default {
 			!dev && terser(),
 		],
 
+		preserveEntrySignatures: false,
 		onwarn,
 	},
 };
